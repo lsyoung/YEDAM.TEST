@@ -25,8 +25,19 @@ public class Test01 {
 		        }
 		        
 					
-						//문제4) 로또 번호를 구하는 프로그램을 작성하세요.
-						int num1 = (int)(Math.random())+45;
+	        //문제4) 로또 번호를 구하는 프로그램을 작성하세요.
+	        //int num1 = (int)(Math.random()*45)+1;
+		
+		int[] lotto = new int[6];
+
+		for (int i = 0; i < lotto.length ; i++) {
+			lotto[i] = (int) (Math.random() * 45) + 1;
+		}
+		for (int i = 0; i < 6; i++) {
+			System.out.println("로또 번호: "+lotto[i]);
+		}
+		
+		
 
 	}
 		

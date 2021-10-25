@@ -62,42 +62,47 @@ public class ReferenceTypeExample {
 		System.out.println("총합 : "+ sum3);
 		System.out.println("평균 : "+ avg3);
 		
-	    System.out.println("=======================================");
+	    System.out.println("|=======================================|");
 	    
 		int max =0; 
+		int sum1 =0;
 		int[] array = {1,5,3,8,2};
 		
 		for (int i =0; i<array.length; i++) {
 			if (array[i] > max) {
 				max = array[i];
 			}
-			System.out.println(max);
+			
+			sum1+=array[i];
 		}
-//		count++;
-//		while(true) {
-//		   int x = (int)(Math.random()*6)+1;
-//		   int y = (int)(Math.random()*6)+1;
-//		   
-//		   int result = x+y;
-//		   if(result == 5) {
-//			   System.out.printf("(%d,%d)", x,y);
-//			   break;
-//		   }   
-//		} 
-//		System.out.println("주사위 던진횟수는 "+count+"번입니다.");
+		System.out.println(max);
+		System.out.println(sum1);
+		
+		int count =0;
+		while(true) {
+		   int x = (int)(Math.random()*6)+1;
+		   int y = (int)(Math.random()*6)+1;
+		   count++;
+		   int result = x+y;
+		   if(result == 5) {
+			   System.out.printf("(%d,%d)", x,y);
+			   break;
+		   }   
+		} 
+		System.out.println("주사위 던진횟수는 "+count+"번입니다.");
 		  
 
 	   
    }
 		
  
-
-	public static int add(int[] scores) {
-		int sum = 0;
-		for (int i = 0; i < 3; i++) {
-			sum += scores[i];
-		}
-		return sum;
-	}
+//
+//	public static int add(int[] scores) {
+//		int sum = 0;
+//		for (int i = 0; i < 3; i++) {
+//			sum += scores[i];
+//		}
+//		return sum;
+//	}
 	
 }

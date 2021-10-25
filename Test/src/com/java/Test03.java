@@ -9,7 +9,7 @@ public class Test03 {
 		Scanner scanner = new Scanner(System.in);
 
 		int[] numList = null;
-		int size = 0;
+		int size = 0; //주사위 굴릴 횟수
 
 		boolean run = true;
 

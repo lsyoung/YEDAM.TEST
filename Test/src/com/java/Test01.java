@@ -21,22 +21,21 @@ public class Test01 {
 		        }else if (x/y==z) {
 		        	System.out.printf("%d / %d = %d \n", x, y, z);
 		        }else {
-		        	System.out.println();
+					System.out.println("사칙연산으로 연산식을 만들 수 없습니다.");
 		        }
-		        
 					
 	        //문제4) 로또 번호를 구하는 프로그램을 작성하세요.
 	        //int num1 = (int)(Math.random()*45)+1;
 		
-		int[] lotto = new int[6];
-
-		for (int i = 0; i < lotto.length ; i++) {
-			lotto[i] = (int) (Math.random() * 45) + 1;
-		}
-		for (int i = 0; i < 6; i++) {
-			System.out.println("로또 번호: "+lotto[i]);
-		}
-		
+//		int[] lotto = new int[6];
+//
+//		for (int i = 0; i < lotto.length ; i++) {
+//			lotto[i] = (int) (Math.random() * 45) + 1;
+//		}
+//		for (int i = 0; i < 6; i++) {
+//			System.out.println("로또 번호: "+lotto[i]);
+//		}
+//		
 		
 
 	}

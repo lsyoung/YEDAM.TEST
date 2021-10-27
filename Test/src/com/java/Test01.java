@@ -37,6 +37,75 @@ public class Test01 {
 //		}
 //		
 		
+		
+			Scanner sc = new Scanner(System.in);
+		boolean run = true;
+		int count = 0;// 굴릴횟수.
+		int number = 0;// 주사위크기.
+
+		while (run) {
+			System.out.println("==1.주사위크기 2.주사위굴리기 3. 결과보기 4. 가장많이나온수 5.종료.");
+			System.out.println("메뉴 > ");
+			int selct = sc.nextInt();
+
+			switch (selct) {
+			case 1:
+				System.out.println("주사위 크기 > ");
+				number = sc.nextInt();
+				if (number <= 10) {
+					break;
+				} else if (number < 5) {
+					System.out.println("입력한 값이 범위를 벗어났습니다.");
+				}
+				break;
+			case 2:
+				while (true) {
+					int num = (int) (Math.random() * 6) + 1;
+					count++;
+					if (num == 5) {
+						break;
+					}
+				}
+				System.out.println("5가 나올때까지 주사위를" + count + "번 굴렸습니다.");
+				break;
+			case 3:
+
+				while (true) {
+				
+					int num = (int) (Math.random() * 6) + 1;
+					count++;
+					switch (num) {
+
+					case 1:
+						System.out.printf("%d은%d번나왔습니다.\n", 1, count);
+					case 2:
+						System.out.printf("%d은%d번나왔습니다.\n", 2, count);
+					case 3:
+						System.out.printf("%d은%d번나왔습니다.\n", 3, count);
+					case 4:
+						System.out.printf("%d은%d번나왔습니다.\n", 4, count);
+					case 5:
+						System.out.printf("%d은%d번나왔습니다.\n", 5, count);
+					case 6:
+						System.out.printf("%d은%d번나왔습니다.\n", 6, count);
+					case 7:
+						System.out.printf("%d은%d번나왔습니다.\n", 7, count);
+					case 8:
+						System.out.printf("%d은%d번나왔습니다.\n", 8, count);
+
+					}
+
+					break;
+				}
+
+			case 4:
+				break;
+			case 5:
+				run = false;
+				System.out.println("종료.");
+				break;
+			}
+		
 
 	}
 		

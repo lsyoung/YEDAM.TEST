@@ -38,11 +38,7 @@ public class Test01 {
 //		
 		
 		
-			Scanner sc = new Scanner(System.in);
-		boolean run = true;
-		int count = 0;// 굴릴횟수.
-		int number = 0;// 주사위크기.
-
+						
 		while (run) {
 			System.out.println("==1.주사위크기 2.주사위굴리기 3. 결과보기 4. 가장많이나온수 5.종료.");
 			System.out.println("메뉴 > ");
@@ -52,60 +48,72 @@ public class Test01 {
 			case 1:
 				System.out.println("주사위 크기 > ");
 				number = sc.nextInt();
-				if (number <= 10) {
-					break;
-				} else if (number < 5) {
-					System.out.println("입력한 값이 범위를 벗어났습니다.");
+
+				if (5 <= number && number <= 10) {
+
+				} else {
+					System.out.println("입력한 값이 범위를 벗어났습니다. 5~10사이 수를 입력해주세요.");
 				}
 				break;
 			case 2:
+
 				while (true) {
-					int num = (int) (Math.random() * 6) + 1;
+					numlist = new int[count];
 					count++;
+					int num = (int) (Math.random() * 10) + 1;
 					if (num == 5) {
 						break;
 					}
 				}
-				System.out.println("5가 나올때까지 주사위를" + count + "번 굴렸습니다.");
+				System.out.printf("%d가 나올때까지 주사위를 %d번 굴렸습니다.\n", 5, count);
 				break;
 			case 3:
 
-				while (true) {
+				    for (int i = 1; i < numlist.length; i++) {
+				    	System.out.println((i + 1) + " : " +numlist[i]);
+			           }
+//					switch (1) {
+//
+//					case 1:
+//						System.out.printf("%d은%d번나왔습니다.\n", 1, count);
+//					case 2:
+//						System.out.printf("%d은%d번나왔습니다.\n", 2, count);
+//					case 3:
+//						System.out.printf("%d은%d번나왔습니다.\n", 3, count);
+//					case 4:
+//						System.out.printf("%d은%d번나왔습니다.\n", 4, count);
+//					case 5:
+//						System.out.printf("%d은%d번나왔습니다.\n", 5, count);
+//					case 6:
+//						System.out.printf("%d은%d번나왔습니다.\n", 6, count);
+//					case 7:
+//						System.out.printf("%d은%d번나왔습니다.\n", 7, count);
+//					case 8:
+//						System.out.printf("%d은%d번나왔습니다.\n", 8, count);
+//
+//					}
+				    break;
+
+//				for(int i = 1; i<numlist.length ; i++) {
+//					System.out.println((i + 1) + "은"+ numlist[i]+" 번 나왔습니다.");
+//					}
 				
-					int num = (int) (Math.random() * 6) + 1;
-					count++;
-					switch (num) {
-
-					case 1:
-						System.out.printf("%d은%d번나왔습니다.\n", 1, count);
-					case 2:
-						System.out.printf("%d은%d번나왔습니다.\n", 2, count);
-					case 3:
-						System.out.printf("%d은%d번나왔습니다.\n", 3, count);
-					case 4:
-						System.out.printf("%d은%d번나왔습니다.\n", 4, count);
-					case 5:
-						System.out.printf("%d은%d번나왔습니다.\n", 5, count);
-					case 6:
-						System.out.printf("%d은%d번나왔습니다.\n", 6, count);
-					case 7:
-						System.out.printf("%d은%d번나왔습니다.\n", 7, count);
-					case 8:
-						System.out.printf("%d은%d번나왔습니다.\n", 8, count);
-
-					}
-
-					break;
-				}
 
 			case 4:
+				int max = 0;
+				for (int i = 0; i < numlist.length; i++) {
+					if (numlist[i] > max)
+						max = i;
+				}
+				System.out.println("가장 많이 나온수는"+max + 1+"입니다.");
 				break;
+
 			case 5:
 				run = false;
 				System.out.println("종료.");
 				break;
 			}
-		
+				
 
 	}
 		

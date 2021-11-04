@@ -1,68 +1,42 @@
 package com.yedam.java.example;
 
 public class GreenCard implements Payment {
-	private final String name = "GreenCard"; // 카드명
-	private String grade; // 적립 등급
-	private int point; // 적립 포인트
-	private double pointRatio; // 포인트 적립율
+	private final String name = "GreenCard";
+	private String grade;
+	private int point;
+	private double pointRatio;
 
 	public GreenCard() {
 		this.grade = "SILVER";
 		this.point = 0;
 		this.pointRatio = 0.05;
 	}
-
-	// 가격을 넘겨받아 포인트 적립율에 따른 포인트를 적립하고 각 결제방식별 추가할인율을 적용한 가격을 반환하는 메소드
 	@Override
-	public int getprice(int price) {
-		return point += pointRatio * price;
+	public int offline(int price) {
+		point += price * pointRatio;
+		return (int) (price - (price * Payment.OFFLINE_PAYMENT_RATIO));
 	}
 
 	@Override
-	public void onLinePay() {
-		return price * 0.03;
+	public int online(int price) {
+		point += price * pointRatio;
+		return (int) (price - (price * Payment.ONLINE_PAYMENT_RATIO));
 	}
 
 	@Override
-	public void offLinePay() {
-		return price -= price * 0.01;
-
+	public int simple(int price) {
+		point += price * pointRatio;
+		return (int) (price - (price * Payment.SIMPLE_PAYMENT_RATIO));
 	}
 
 	@Override
-	public void simplePay() {
-		return price -= price * 0.05;
-	}
-
-	@Override
-	public void cardName() {
-		System.out.println("카드명:");
-	}
-
-	@Override
-	public String grade() {
-		System.out.println("적용등급: ");
-		return null;
-	}
-
-	@Override
-	public double saleRatio() {
-		System.out.println("할인율: ");
-
-		return 0;
-	}
-
-	@Override
-	public double pointRatio() {
-		System.out.println("포인트 적립율: ");
-		return 0;
-	}
-
-	@Override
-	public int point() {
-		System.out.println("적립포인트: ");
-
-		return 0;
+	public void showCardInfo() {
+		System.out.println("====== 카드 정보 ======");
+		System.out.println("카드명      : " + name);
+		System.out.println("적용 등급   : " + grade);
+		System.out.println("포인트 적립율 : " + pointRatio);
+		System.out.println("적립 포인트  : " + point);
+		
 	}
 
 }

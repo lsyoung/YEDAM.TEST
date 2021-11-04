@@ -1,11 +1,11 @@
 package com.yedam.java.example;
 
 public class VIPCard implements Payment {
-	private final String name = "VIPCard"; // 카드명
-	private String grade; // 적용 등급
-	private double saleRatio; // 할인율
-	private int point; // 적립 포인트
-	private double pointRatio; // 포인트 적립율
+	private final String name = "VIPCard";
+	private String grade;
+	private double saleRatio;
+	private int point;
+	private double pointRatio;
 
 	public VIPCard() {
 		this.grade = "GOLD";
@@ -13,57 +13,33 @@ public class VIPCard implements Payment {
 		this.point = 0;
 		this.pointRatio = 0.03;
 	}
-
 	@Override
-	public int getprice(int price) {
-
-		return 0;
+	public int offline(int price) {
+		point += price * pointRatio;
+		return (int) (price - (price * (saleRatio+Payment.OFFLINE_PAYMENT_RATIO)));
 	}
 
 	@Override
-	public void onLinePay() {
-
+	public int online(int price) {
+		point += price * pointRatio;
+		return (int) (price - (price * (saleRatio+Payment.ONLINE_PAYMENT_RATIO)));
 	}
 
 	@Override
-	public void offLinePay() {
-
+	public int simple(int price) {
+		point += price * pointRatio;
+		return (int) (price - (price * (saleRatio+Payment.SIMPLE_PAYMENT_RATIO)));
 	}
 
 	@Override
-	public void simplePay() {
-
-	}
-
-	@Override
-	public void cardName() {
-		System.out.println("카드명:");
-	}
-
-	@Override
-	public String grade() {
-		System.out.println("적용등급: ");
-		return null;
-	}
-
-	@Override
-	public double saleRatio() {
-		System.out.println("할인율: ");
-
-		return 0;
-	}
-
-	@Override
-	public double pointRatio() {
-		System.out.println("포인트 적립율: ");
-		return 0;
-	}
-
-	@Override
-	public int point() {
-		System.out.println("적립포인트: ");
-
-		return 0;
+	public void showCardInfo() {
+		System.out.println("====== 카드 정보 ======");
+		System.out.println("카드명      : " + name);
+		System.out.println("적용 등급   : " + grade);
+		System.out.println("할인율 : " + saleRatio);
+		System.out.println("포인트 적립율 : " + pointRatio);
+		System.out.println("적립 포인트 : " + point);
+		
 	}
 
 }

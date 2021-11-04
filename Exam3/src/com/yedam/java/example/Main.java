@@ -14,10 +14,12 @@ public class Main {
 		Member member = Member.getMemberShip(record);
 		member.showMemberInfo();
 		
-		//회원 등급에 맞는 카드의 객체를 생성한다. instanceof
 		Payment myCard = null;
-		
-		
+		if(member instanceof Gold) {
+			myCard = new VIPCard();
+		}else if(member instanceof Silver) {
+			myCard = new GreenCard();
+		}
 		System.out.println("=== 등급에 따른 카드 사용시 결제 예상금액 ===");
 		System.out.println("사용할 금액 >>");
 		int price = scanner.nextInt();

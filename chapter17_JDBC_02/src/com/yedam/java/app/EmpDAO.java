@@ -22,6 +22,15 @@ public class EmpDAO {
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
 
+	// 싱글톤
+	private static EmpDAO empDAO = null;
+	private EmpDAO() {}//생성자
+	public static EmpDAO getInstance() {
+		if(empDAO == null) {
+			empDAO = new EmpDAO();
+		}
+		return empDAO;
+	}
 	// DB 연결하기
 	public void connect() {
 		try {
@@ -29,7 +38,7 @@ public class EmpDAO {
 			Class.forName(jdbc_driver);
 
 			// 2. DB 서버 접속하기
-			Connection conn = DriverManager.getConnection(jdbc_url, connectedId, conntectedPwd);
+			conn = DriverManager.getConnection(jdbc_url, connectedId, conntectedPwd); //conn앞에 타입빼기
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
@@ -68,7 +77,7 @@ public class EmpDAO {
 				Emp emp = new Emp();
 				emp.setEmployeeId(rs.getInt("employee_id"));
 				emp.setFirstName(rs.getString("first_name"));
-				emp.setLastNae(rs.getString("last_name"));
+				emp.setLastName(rs.getString("last_name"));
 				emp.setEmail(rs.getString("email"));
 				emp.setPhoneNumber(rs.getString("phone_number"));
 				emp.setHireDate(rs.getDate("hire_date"));
@@ -95,7 +104,7 @@ public class EmpDAO {
 	// 조회 - 단건조회 or 상세조회
 	public Emp selectOne(int employeeId) {
 		// 값을 답을 변수 선언
-		Emp emp = new Emp();
+		Emp emp = null; //null 선언후 sql실행할때 값을 저장한다. 
 		try {
 			// DB 연결하기
 			connect();
@@ -105,9 +114,10 @@ public class EmpDAO {
 			String select = "select * from employees where employee_id = " + employeeId;
 			rs = stmt.executeQuery(select);
 			if (rs.next()) {
+				emp = new Emp();
 				emp.setEmployeeId(rs.getInt("employee_id"));
 				emp.setFirstName(rs.getString("first_name"));
-				emp.setLastNae(rs.getString("last_name"));
+				emp.setLastName(rs.getString("last_name"));
 				emp.setEmail(rs.getString("email"));
 				emp.setPhoneNumber(rs.getString("phone_number"));
 				emp.setHireDate(rs.getDate("hire_date"));
@@ -138,7 +148,7 @@ public class EmpDAO {
 			pstmt = conn.prepareStatement(insert);
 			pstmt.setInt(1, emp.getEmployeeId());
 			pstmt.setString(2, emp.getFirstName());
-			pstmt.setString(3, emp.getLastNae());
+			pstmt.setString(3, emp.getLastName());
 			pstmt.setString(4, emp.getEmail());
 			pstmt.setString(5, emp.getPhoneNumber());
 			pstmt.setDate(6, emp.getHireDate());
@@ -168,13 +178,13 @@ public class EmpDAO {
 			connect();
 			String update = "update employees set last_name = ? where employee_id = ?";
 			pstmt = conn.prepareStatement(update);
-			pstmt.setString(1, "Kang");
-			pstmt.setInt(2, 1000);
+			pstmt.setString(1, emp.getLastName());
+			pstmt.setInt(2, emp.getEmployeeId());
 
 			int result = pstmt.executeUpdate();
 
 			// 결과
-			System.out.println(update + "건이 수정되었습니다. ");
+			System.out.println(result + "건이 수정되었습니다. ");
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -184,16 +194,16 @@ public class EmpDAO {
 	}
 
 	// 삭제
-	public void delete(Emp emp) {
+	public void delete(int employeeId) {
 		try {
 			connect();
 			String delete = "delete from employees where employee_id = ?";
 			pstmt = conn.prepareStatement(delete);
-			pstmt.setInt(1, 1000);
+			pstmt.setInt(1, employeeId);
 
 			int result = pstmt.executeUpdate();
 			// 결과
-			System.out.println(delete + "건이 되습니다.");
+			System.out.println(result + "건이 되습니다.");
 
 		} catch (SQLException e) {
 			e.printStackTrace();
